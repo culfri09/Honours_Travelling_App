@@ -8,9 +8,11 @@ public class Scene_Manager : MonoBehaviour
 
     // Declare a delegate
     public delegate void StartButtonDelegate();
+    public delegate void SignInButtonDelegate();
 
     // Declare an event using the delegate
     public static event StartButtonDelegate OnAccountCreated;
+    public static event SignInButtonDelegate OnSignIn;
 
     private void Start()
     {
@@ -42,6 +44,7 @@ public class Scene_Manager : MonoBehaviour
 
     public void OnCreateAccountButtonClicked()
     {
+        // Save credentials
         OnAccountCreated?.Invoke();
 
         // Load the main page
@@ -50,7 +53,10 @@ public class Scene_Manager : MonoBehaviour
 
     public void OnSignInButtonClicked()
     {
+        // Check credentials
+        OnSignIn?.Invoke();
+
         // Load the main page
-        SceneManager.LoadScene("MainPage");
+      //  SceneManager.LoadScene("MainPage");
     }
 }
