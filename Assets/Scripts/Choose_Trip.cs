@@ -17,13 +17,15 @@ public class Choose_Trip : MonoBehaviour
 
     public void ChooseLondonTrip()
     {
-        tripManager.AddTripToList("London");
+       // tripManager.upcomingTripsNumber++;
+        tripManager.AddTripToList("London");     
         SceneManager.LoadScene("MainPage");
     }
 
     public void ChooseJapanTrip()
     {
-        tripManager.AddTripToList("Japan");
+        //tripManager.upcomingTripsNumber++;
+        tripManager.AddTripToList("Japan");       
         SceneManager.LoadScene("MainPage");
     }
 }

@@ -9,9 +9,6 @@ public class Upcoming_Trips_Manager : MonoBehaviour
 
     [SerializeField] private Text upcomingTripsText;
 
-    private int upcomingTripsNumber = 0;
-
-
     private void Awake()
     {
         tripManager = GameObject.FindObjectOfType<Trip_Manager>();
@@ -20,6 +17,7 @@ public class Upcoming_Trips_Manager : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+
         if (tripManager.TripList.Contains("London")){
             AddLondonTrip();
         }
@@ -28,17 +26,19 @@ public class Upcoming_Trips_Manager : MonoBehaviour
            AddJapanTrip();
             }
         }
-  
-    private void AddLondonTrip()
+
+    private void Update()
     {
-            upcomingTripsNumber++;
-            upcomingTripsText.text = upcomingTripsNumber.ToString() + " places";
-     }
-    private void AddJapanTrip()
-    {
-        upcomingTripsNumber++;
-        upcomingTripsText.text = upcomingTripsNumber.ToString() + " places";
+        upcomingTripsText.text = tripManager.upcomingTripsNumber.ToString() + " places";
     }
 
+    private void AddLondonTrip()
+    {
+        Debug.Log("Add London");
+    }
+    private void AddJapanTrip()
+    {
+        Debug.Log("Add Japan");
+    }
 
 }
