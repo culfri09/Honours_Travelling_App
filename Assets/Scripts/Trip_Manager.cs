@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Trip_Manager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Trip_Manager : MonoBehaviour
 
     [SerializeField] private Text upcomingTripsText;
 
-    private int upcomingTripsNumber = 1;
+    private int upcomingTripsNumber = 0;
  /*   public void AddList(Trip trip)
     {
         tripList.Add(trip);
@@ -23,6 +24,7 @@ public class Trip_Manager : MonoBehaviour
     {
         upcomingTripsNumber++;
         upcomingTripsText.text = upcomingTripsNumber.ToString() + " places";
+        SceneManager.LoadScene("UploadYourFile");
     }
     // Start is called before the first frame update
     void Start()
