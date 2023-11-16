@@ -10,4 +10,9 @@ public class UI_Manager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void AddTrip()
+    {
+        SceneManager.LoadScene("UploadYourFile");
+    }
 }

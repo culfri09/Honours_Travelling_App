@@ -2,39 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class Trip_Manager : MonoBehaviour
 {
+    // Singleton instance
+    private static Trip_Manager _instance;
 
-    public List<Trip> tripList = new List<Trip>();
+    // List to store trips
+    public List<string> TripList = new List<string>();
 
-    [SerializeField] private Text upcomingTripsText;
-
-    private int upcomingTripsNumber = 0;
- /*   public void AddList(Trip trip)
+    // Public property to access the instance
+    public static Trip_Manager Instance
     {
-        tripList.Add(trip);
-        upcomingTripsNumber++;
-        Debug.Log(upcomingTripsNumber);
-        upcomingTripsText.text = upcomingTripsNumber.ToString() + "places";
-    }*/
+        get
+        {
+            if (_instance == null)
+            {
+                // If there is no instance, find it in the scene
+                _instance = FindObjectOfType<Trip_Manager>();
 
-    public void AddTrip()
-    {
-        upcomingTripsNumber++;
-        upcomingTripsText.text = upcomingTripsNumber.ToString() + " places";
-        SceneManager.LoadScene("UploadYourFile");
+                // If no instance is found, create a new one
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject("TripManagerSingleton");
+                    _instance = singletonObject.AddComponent<Trip_Manager>();
+                }
+            }
+
+            return _instance;
+        }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
-        
+        // Ensure only one instance exists
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            // If another instance exists, destroy this one
+            Destroy(this.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void AddTripToList(string trip)
     {
-        
+        TripList.Add(trip);
     }
 }
