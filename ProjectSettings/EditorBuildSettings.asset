@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FileManager.unity
     guid: 9dd51a20dd462084bbbee6e1c61ae671
+  - enabled: 1
+    path: Assets/Scenes/MyTicketsJapan.unity
+    guid: efeef94965bb1a343af4b0f156f10d92
+  - enabled: 1
+    path: Assets/Scenes/MyTicketsLondon.unity
+    guid: 47940cf43d94ce847b88a8bfa3a37a20
   m_configObjects: {}
