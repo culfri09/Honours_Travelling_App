@@ -9,6 +9,10 @@ public class Upcoming_Trips_Manager : MonoBehaviour
 
     [SerializeField] private Text upcomingTripsText;
 
+    [SerializeField] private GameObject londonTrip;
+
+    [SerializeField] private GameObject japanTrip;
+
     private void Awake()
     {
         tripManager = GameObject.FindObjectOfType<Trip_Manager>();
@@ -34,11 +38,15 @@ public class Upcoming_Trips_Manager : MonoBehaviour
 
     private void AddLondonTrip()
     {
-        Debug.Log("Add London");
+        londonTrip.SetActive(true);
     }
     private void AddJapanTrip()
     {
-        Debug.Log("Add Japan");
+        japanTrip.SetActive(true);
+       if(londonTrip.activeSelf == false)
+        {
+            japanTrip.transform.position = londonTrip.transform.position;
+        }
     }
 
 }
