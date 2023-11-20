@@ -11,10 +11,15 @@ public class Trip_Manager : MonoBehaviour
 
     // List to store trips
     public List<string> TripList = new List<string>();
+    public List<string> FavoriteList = new List<string>();
+
+    public string[] tripDates = { "13_March", "15_March", "17_March", "24_Feb", "25_Feb", "26_Feb"};
 
     public int upcomingTripsNumber;
     
     private const string UpcomingTripsKey = "UpcomingTripsNumber";
+    private const string TripListKey = "TripList";
+    private const string FavoriteListKey = "FavoriteList";
 
 
     // Public property to access the instance
@@ -63,7 +68,11 @@ public class Trip_Manager : MonoBehaviour
         LoadData();
     }
 
-
+    public void AddTrip(string tripDate)
+    {
+        FavoriteList.Add(tripDate);
+        SaveData();
+    }
     public void AddTripToList(string trip)
     {
         TripList.Add(trip);
@@ -71,6 +80,12 @@ public class Trip_Manager : MonoBehaviour
     }
 
     public void DeleteTripFromList(string trip)
+    {
+        FavoriteList.Remove(trip);
+        SaveData(); // Save the updated TripList
+    }
+
+    public void DeleteFavoriteFromList(string trip)
     {
         TripList.Remove(trip);
         SaveData(); // Save the updated TripList
@@ -80,6 +95,7 @@ public class Trip_Manager : MonoBehaviour
     private void SaveData()
     {
         PlayerPrefs.SetString("TripList", string.Join(",", TripList.ToArray()));
+        PlayerPrefs.SetString(FavoriteListKey, string.Join(",", FavoriteList.ToArray()));
         PlayerPrefs.SetInt(UpcomingTripsKey,upcomingTripsNumber);
         PlayerPrefs.Save();
     }
@@ -88,11 +104,17 @@ public class Trip_Manager : MonoBehaviour
     private void LoadData()
     {
         string savedTripList = PlayerPrefs.GetString("TripList", "");
+        string savedFavoriteList = PlayerPrefs.GetString(FavoriteListKey, "");
         upcomingTripsNumber = PlayerPrefs.GetInt(UpcomingTripsKey, 0);
 
         if (!string.IsNullOrEmpty(savedTripList))
         {
             TripList = new List<string>(savedTripList.Split(','));
+        }
+
+        if (!string.IsNullOrEmpty(savedFavoriteList))
+        {
+            FavoriteList = new List<string>(savedFavoriteList.Split(','));
         }
     }
 }
