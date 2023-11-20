@@ -8,17 +8,13 @@ public class Display_Favorites : MonoBehaviour
     [SerializeField] private GameObject thirteenMarch;
     [SerializeField] private GameObject fifteenMarch;
     [SerializeField] private GameObject seventeenMarch;
+    [SerializeField] private GameObject fifteen1March;
 
 
     private Trip_Manager tripManager;
     private void Awake()
     {
         tripManager = GameObject.FindObjectOfType<Trip_Manager>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -58,6 +54,10 @@ public class Display_Favorites : MonoBehaviour
     void AddfifteenMarchMarch()
     {
         fifteenMarch.SetActive(true);
+        if (thirteenMarch.activeSelf == false)
+        {
+            fifteenMarch.transform.position = thirteenMarch.transform.position;
+        }
     }
 
     public void RemoveseventeenMarchMarch()
@@ -68,6 +68,20 @@ public class Display_Favorites : MonoBehaviour
 
     void AddseventeenMarchMarch()
     {
+        if (thirteenMarch.activeSelf == true && fifteenMarch.activeSelf == false)
+        {
+            seventeenMarch.transform.position = fifteenMarch.transform.position;
+        }
+
+        if (thirteenMarch.activeSelf == false && fifteenMarch.activeSelf == true)
+        {
+            seventeenMarch.transform.position = fifteen1March.transform.position;
+        }
+
+        if (thirteenMarch.activeSelf == false && fifteenMarch.activeSelf == false)
+        {
+            seventeenMarch.transform.position = thirteenMarch.transform.position;
+        }
         seventeenMarch.SetActive(true);
     }
 }
