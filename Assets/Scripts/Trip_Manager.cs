@@ -66,6 +66,7 @@ public class Trip_Manager : MonoBehaviour
 
         // Load the TripList from PlayerPrefs
         LoadData();
+     
     }
 
     public void AddTrip(string tripDate)

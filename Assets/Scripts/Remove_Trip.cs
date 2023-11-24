@@ -16,14 +16,16 @@ public class Remove_Trip : MonoBehaviour
     public void RemoveLondonTrip()
     {
         tripManager.upcomingTripsNumber--;
-        tripManager.DeleteTripFromList("London");
+        tripManager.TripList.Remove("London");
+        //   tripManager.DeleteTripFromList("London");
         SceneManager.LoadScene("MainPage");
     }
 
     public void RemoveJapanTrip()
     {
         tripManager.upcomingTripsNumber--;
-        tripManager.DeleteTripFromList("Japan");
+        tripManager.TripList.Remove("Japan");
+        // tripManager.DeleteTripFromList("Japan");
         SceneManager.LoadScene("MainPage");
     }
 }
